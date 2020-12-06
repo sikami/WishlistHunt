@@ -28,6 +28,12 @@ public class View extends Application {
     private Button run;
     private Button stop;
     private String phoneNumber;
+    private String urlOneAddress;
+    private String urlTwoAddress;
+    private String urlThreeAddress;
+    private String keywordOneName;
+    private String keywordTwoName;
+    private String keywordThreename;
 
     public View() {
         this.gridPane = theLayout();
@@ -41,8 +47,12 @@ public class View extends Application {
         this.run = null;
         this.stop = null;
         this.phoneNumber = "";
-
-
+        this.urlOneAddress = "";
+        this.urlTwoAddress = "";
+        this.urlThreeAddress = "";
+        this.keywordOneName = "";
+        this.keywordTwoName = "";
+        this.keywordThreename = "";
     }
 
     @Override
@@ -57,6 +67,7 @@ public class View extends Application {
     private GridPane getGridPane() {
         return gridPane;
     }
+
 
     private void setGridPane(GridPane gridPane) {
         this.gridPane = gridPane;
@@ -134,14 +145,40 @@ public class View extends Application {
         this.stop = stop;
     }
 
+    private void getData() {
+        this.phoneNumber = this.phone.getText();
+        this.urlOneAddress = this.url1.getText();
+        this.urlTwoAddress = this.url2.getText();
+        this.urlThreeAddress = this.url3.getText();
+        this.keywordOneName = this.keyword1.getText();
+        this.keywordTwoName = this.keyword2.getText();
+        this.keywordThreename = this.keyword3.getText();
+    }
+
+    private void fieldsStatOnRun() {
+        this.run.setDisable(true);
+        this.stop.setDisable(false);
+        this.url1.setDisable(true);
+        this.url2.setDisable(true);
+        this.url3.setDisable(true);
+        this.keyword1.setDisable(true);
+        this.keyword2.setDisable(true);
+        this.keyword3.setDisable(true);
+        this.phone.setDisable(true);
+    }
     //make methods to retrieve string for phone number, url address, keywords
     public void tryButton() {
         //add button listener
          //if pressed then all required data are saved
 
         this.run.setOnMouseClicked(button -> {
-            this.run.setDisable(true);
-            this.stop.setDisable(false);
+            try {
+                getData();
+                fieldsStatOnRun();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
         });
 
 
