@@ -166,6 +166,26 @@ public class View extends Application {
         this.keyword3.setDisable(true);
         this.phone.setDisable(true);
     }
+
+    private void fieldsStatOnStop() {
+        this.run.setDisable(false);
+        this.stop.setDisable(true);
+        this.url1.clear();
+        this.url1.setDisable(false);
+        this.url2.setDisable(false);
+        this.url2.clear();
+        this.url3.setDisable(false);
+        this.url3.clear();
+        this.keyword1.setDisable(false);
+        this.keyword1.clear();
+        this.keyword2.setDisable(false);
+        this.keyword2.clear();
+        this.keyword3.setDisable(false);
+        this.keyword3.clear();
+        this.phone.clear();
+        this.phone.setDisable(false);
+    }
+
     //make methods to retrieve string for phone number, url address, keywords
     public void tryButton() {
         //add button listener
@@ -179,6 +199,10 @@ public class View extends Application {
                 e.printStackTrace();
             }
 
+        });
+
+        this.stop.setOnMouseClicked(button -> {
+            fieldsStatOnStop();
         });
 
 
