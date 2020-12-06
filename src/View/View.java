@@ -1,5 +1,6 @@
 package View;
 
+import Main.ShopToSearch;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -14,6 +15,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class View extends Application {
 
@@ -34,6 +38,7 @@ public class View extends Application {
     private String keywordOneName;
     private String keywordTwoName;
     private String keywordThreename;
+    private List<ShopToSearch> shops;
 
     public View() {
         this.gridPane = theLayout();
@@ -53,6 +58,7 @@ public class View extends Application {
         this.keywordOneName = "";
         this.keywordTwoName = "";
         this.keywordThreename = "";
+        this.shops = new ArrayList<>();
     }
 
     @Override
@@ -64,81 +70,40 @@ public class View extends Application {
         stage.show();
     }
 
-    private GridPane getGridPane() {
-        return gridPane;
-    }
-
-
-    private void setGridPane(GridPane gridPane) {
-        this.gridPane = gridPane;
-    }
-
-    private TextField getPhone() {
-        return phone;
+    public List<ShopToSearch> getShops() {
+        return shops;
     }
 
     private void setPhone(TextField phone) {
         this.phone = phone;
     }
 
-    private TextField getUrl1() {
-        return url1;
-    }
-
     private void setUrl1(TextField url1) {
         this.url1 = url1;
-    }
-
-    private TextField getUrl2() {
-        return url2;
     }
 
     private void setUrl2(TextField url2) {
         this.url2 = url2;
     }
 
-    private TextField getUrl3() {
-        return url3;
-    }
-
     private void setUrl3(TextField url3) {
         this.url3 = url3;
-    }
-
-    private TextField getKeyword1() {
-        return keyword1;
     }
 
     private void setKeyword1(TextField keyword1) {
         this.keyword1 = keyword1;
     }
 
-    private TextField getKeyword2() {
-        return keyword2;
-    }
-
     private void setKeyword2(TextField keyword2) {
         this.keyword2 = keyword2;
-    }
-
-    private TextField getKeyword3() {
-        return keyword3;
     }
 
     private void setKeyword3(TextField keyword3) {
         this.keyword3 = keyword3;
     }
 
-    private Button getRun() {
-        return run;
-    }
-
     private void setRun(Button run) {
         this.run = run;
-    }
-
-    private Button getStop() {
-        return stop;
     }
 
     private void setStop(Button stop) {
@@ -153,6 +118,14 @@ public class View extends Application {
         this.keywordOneName = this.keyword1.getText();
         this.keywordTwoName = this.keyword2.getText();
         this.keywordThreename = this.keyword3.getText();
+
+        if (!this.urlOneAddress.isEmpty() && !this.keywordOneName.isEmpty()) {
+            shops.add(new ShopToSearch(this.phoneNumber, this.urlOneAddress, this.keywordOneName));
+        } else if (!this.urlTwoAddress.isEmpty() && !this.keywordTwoName.isEmpty()) {
+            shops.add(new ShopToSearch(this.phoneNumber, this.urlTwoAddress, this.keywordTwoName));
+        } else if (!this.urlThreeAddress.isEmpty() && !this.keywordThreename.isEmpty()) {
+            shops.add(new ShopToSearch(this.phoneNumber, this.urlThreeAddress, this.keywordThreename));
+        }
     }
 
     private void fieldsStatOnRun() {
@@ -166,6 +139,26 @@ public class View extends Application {
         this.keyword3.setDisable(true);
         this.phone.setDisable(true);
     }
+
+    private void fieldsStatOnStop() {
+        this.run.setDisable(false);
+        this.stop.setDisable(true);
+        this.url1.clear();
+        this.url1.setDisable(false);
+        this.url2.setDisable(false);
+        this.url2.clear();
+        this.url3.setDisable(false);
+        this.url3.clear();
+        this.keyword1.setDisable(false);
+        this.keyword1.clear();
+        this.keyword2.setDisable(false);
+        this.keyword2.clear();
+        this.keyword3.setDisable(false);
+        this.keyword3.clear();
+        this.phone.clear();
+        this.phone.setDisable(false);
+    }
+
     //make methods to retrieve string for phone number, url address, keywords
     public void tryButton() {
         //add button listener
@@ -179,6 +172,10 @@ public class View extends Application {
                 e.printStackTrace();
             }
 
+        });
+
+        this.stop.setOnMouseClicked(button -> {
+            fieldsStatOnStop();
         });
 
 
