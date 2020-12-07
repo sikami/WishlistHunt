@@ -2,6 +2,7 @@ package DataScraper;
 
 import Main.ShopToSearch;
 import View.ViewGui;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -18,7 +19,10 @@ public class DataScraper {
 
     private Document visitWebsiteOne() {
         try {
-            Document doc = (Document) Jsoup.connect(shops.get(0).getUrlAddress());
+            Connection connection = Jsoup.connect(shops.get(0).getUrlAddress());
+            connection.userAgent("Mozilla");
+            connection.referrer("http://google.com");
+            Document doc = connection.get();
             return doc;
         } catch (Exception e) {
             System.out.println("Cannot retrieve website.");
@@ -27,9 +31,10 @@ public class DataScraper {
     }
 
     public boolean scrapeKeyword(String keyword) {
+        Document document = visitWebsiteOne();
         Elements elements = document.body().select("*");
         for (Element element : elements) {
-            if (element.ownText().contains(keyword)) {
+            if (element.ownText().toLowerCase().contains(keyword.toLowerCase())) {
                 System.out.println(element.ownText());
                 return true;
             }
