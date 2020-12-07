@@ -1,5 +1,6 @@
 package View;
 
+import DataScraper.DataScraper;
 import Main.ShopToSearch;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -19,7 +20,7 @@ import javafx.stage.Stage;
 import java.util.ArrayList;
 import java.util.List;
 
-public class View extends Application {
+public class ViewGui extends Application {
 
     private GridPane gridPane;
     private TextField phone;
@@ -40,7 +41,7 @@ public class View extends Application {
     private String keywordThreename;
     private List<ShopToSearch> shops;
 
-    public View() {
+    public ViewGui() {
         this.gridPane = theLayout();
         this.phone = null;
         this.url1 = null;
@@ -68,6 +69,11 @@ public class View extends Application {
         tryButton();
         stage.setScene(scene);
         stage.show();
+
+    }
+
+    public void printShops() {
+        shops.stream().forEach(obj -> System.out.println(obj));
     }
 
     public List<ShopToSearch> getShops() {
@@ -111,6 +117,8 @@ public class View extends Application {
     }
 
     private void getData() {
+        shops.clear();
+
         this.phoneNumber = this.phone.getText();
         this.urlOneAddress = this.url1.getText();
         this.urlTwoAddress = this.url2.getText();
@@ -121,9 +129,13 @@ public class View extends Application {
 
         if (!this.urlOneAddress.isEmpty() && !this.keywordOneName.isEmpty()) {
             shops.add(new ShopToSearch(this.phoneNumber, this.urlOneAddress, this.keywordOneName));
-        } else if (!this.urlTwoAddress.isEmpty() && !this.keywordTwoName.isEmpty()) {
+        }
+
+        if (!this.urlTwoAddress.isEmpty() && !this.keywordTwoName.isEmpty()) {
             shops.add(new ShopToSearch(this.phoneNumber, this.urlTwoAddress, this.keywordTwoName));
-        } else if (!this.urlThreeAddress.isEmpty() && !this.keywordThreename.isEmpty()) {
+        }
+
+        if (!this.urlThreeAddress.isEmpty() && !this.keywordThreename.isEmpty()) {
             shops.add(new ShopToSearch(this.phoneNumber, this.urlThreeAddress, this.keywordThreename));
         }
     }
@@ -168,6 +180,9 @@ public class View extends Application {
             try {
                 getData();
                 fieldsStatOnRun();
+                DataScraper dataScraper = new DataScraper(shops);
+                boolean exist = dataScraper.scrapeKeyword(shops.get(0).getKeyWord());
+                System.out.println(exist);
             } catch (Exception e) {
                 e.printStackTrace();
             }

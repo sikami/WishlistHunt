@@ -1,11 +1,15 @@
 package Main;
 
-import View.View;
+import DataScraper.DataScraper;
+import View.ViewGui;
 
 import static javafx.application.Application.launch;
 
 public class Main {
     public static void main(String[] args) {
-        launch(View.class);
+        launch(ViewGui.class);
+
     }
+
+
 }
