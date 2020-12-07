@@ -1,5 +1,6 @@
 package View;
 
+import Data.DataScraper;
 import Main.ShopToSearch;
 import javafx.application.Application;
 import javafx.geometry.Insets;
@@ -16,10 +17,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-public class View extends Application {
+public class ViewGui extends Application {
 
     private GridPane gridPane;
     private TextField phone;
@@ -40,7 +42,7 @@ public class View extends Application {
     private String keywordThreename;
     private List<ShopToSearch> shops;
 
-    public View() {
+    public ViewGui() {
         this.gridPane = theLayout();
         this.phone = null;
         this.url1 = null;
@@ -111,6 +113,7 @@ public class View extends Application {
     }
 
     private void getData() {
+
         this.phoneNumber = this.phone.getText();
         this.urlOneAddress = this.url1.getText();
         this.urlTwoAddress = this.url2.getText();
@@ -126,6 +129,7 @@ public class View extends Application {
         } else if (!this.urlThreeAddress.isEmpty() && !this.keywordThreename.isEmpty()) {
             shops.add(new ShopToSearch(this.phoneNumber, this.urlThreeAddress, this.keywordThreename));
         }
+
     }
 
     private void fieldsStatOnRun() {
