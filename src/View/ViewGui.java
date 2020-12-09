@@ -123,6 +123,10 @@ public class ViewGui extends Application {
         this.stop = stop;
     }
 
+    public void setExist(boolean exist) {
+        isExist = exist;
+    }
+
     private void getData() {
         shops.clear();
 
@@ -187,7 +191,8 @@ public class ViewGui extends Application {
             try {
                 getData();
                 fieldsStatOnRun();
-                DataScraper dataScraper = new DataScraper(shops);
+//                DataScraper dataScraper = new DataScraper(shops);
+
                 //To be continue
             } catch (Exception e) {
                 e.printStackTrace();
@@ -201,21 +206,13 @@ public class ViewGui extends Application {
     }
 
     public boolean buttonSelected(ToggleGroup toggleGroup) {
-        toggleGroup.selectedToggleProperty().addListener(new ChangeListener<Toggle>() {
-            @Override
-            public void changed(ObservableValue<? extends Toggle> observableValue, Toggle toggle, Toggle t1) {
-                RadioButton radioButton = (RadioButton) toggleGroup.getSelectedToggle();
-                if (radioButton != null) {
-                    String text = radioButton.getText();
-                    if (text.equals("exist")) {
-                        isExist = true;
-                    } else {
-                        isExist = false;
-                    }
-                }
-            }
-        });
-        return isExist;
+       RadioButton radioButton1 = (RadioButton) toggleGroup.getSelectedToggle();
+       if (radioButton1.getText().equals("exist")) {
+           setExist(true);
+       } else {
+           setExist(false);
+       }
+       return this.isExist;
     }
 
 
