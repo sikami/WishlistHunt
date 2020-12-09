@@ -32,7 +32,8 @@ public class DataScraper {
 
     public boolean scrapeKeyword(String keyword) {
         Document document = visitWebsiteOne();
-        Elements elements = document.body().select("*");
+        Elements elements  = document.getAllElements();
+        //Elements elements = document.body().select("*");
         for (Element element : elements) {
             if (element.ownText().toLowerCase().contains(keyword.toLowerCase())) {
                 System.out.println(element.ownText());
