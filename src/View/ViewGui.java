@@ -44,6 +44,7 @@ public class ViewGui extends Application {
     private ToggleGroup toogleGroup1;
     private ToggleGroup toogleGroup2;
     private ToggleGroup toogleGroup3;
+    private boolean exist1, exist2, exist3;
 
     public ViewGui() {
         this.gridPane = theLayout();
@@ -67,6 +68,9 @@ public class ViewGui extends Application {
         this.toogleGroup1 = new ToggleGroup();
         this.toogleGroup2 = new ToggleGroup();
         this.toogleGroup3 = new ToggleGroup();
+        this.exist1 = false;
+        this.exist2 = false;
+        this.exist3 = false;
     }
 
     @Override
@@ -127,6 +131,19 @@ public class ViewGui extends Application {
         isExist = exist;
     }
 
+
+    private boolean getExistTrueFalse(ToggleGroup toggleGroup) {
+        RadioButton selected = (RadioButton) toggleGroup.getSelectedToggle();
+        String value = selected.getText();
+
+        if (value.equals("exist")) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
     private void getData() {
         shops.clear();
 
@@ -137,6 +154,9 @@ public class ViewGui extends Application {
         this.keywordOneName = this.keyword1.getText();
         this.keywordTwoName = this.keyword2.getText();
         this.keywordThreename = this.keyword3.getText();
+        this.exist1 = getExistTrueFalse(toogleGroup1);
+        this.exist2 = getExistTrueFalse(toogleGroup2);
+        this.exist3 = getExistTrueFalse(toogleGroup3);
 
         if (!this.urlOneAddress.isEmpty() && !this.keywordOneName.isEmpty()) {
             shops.add(new ShopToSearch(this.phoneNumber, this.urlOneAddress, this.keywordOneName, buttonSelected(toogleGroup1)));
@@ -192,7 +212,7 @@ public class ViewGui extends Application {
                 getData();
                 fieldsStatOnRun();
 //                DataScraper dataScraper = new DataScraper(shops);
-
+                System.out.println(shops);
                 //To be continue
             } catch (Exception e) {
                 e.printStackTrace();
