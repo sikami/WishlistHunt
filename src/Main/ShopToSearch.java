@@ -31,6 +31,6 @@ public class ShopToSearch {
 
     public String toString() {
         return "Url address: " + this.urlAddress + "\n" + "Keyword to search: " + this.keyWord + "\n" +
-                "Phone number: " + this.phoneNumber + "\n";
+                "Phone number: " + this.phoneNumber + "\n" + this.exist + "\n";
     }
 }

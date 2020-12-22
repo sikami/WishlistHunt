@@ -159,15 +159,15 @@ public class ViewGui extends Application {
         this.exist3 = getExistTrueFalse(toogleGroup3);
 
         if (!this.urlOneAddress.isEmpty() && !this.keywordOneName.isEmpty()) {
-            shops.add(new ShopToSearch(this.phoneNumber, this.urlOneAddress, this.keywordOneName, buttonSelected(toogleGroup1)));
+            shops.add(new ShopToSearch(this.phoneNumber, this.urlOneAddress, this.keywordOneName, this.exist1));
         }
 
         if (!this.urlTwoAddress.isEmpty() && !this.keywordTwoName.isEmpty()) {
-            shops.add(new ShopToSearch(this.phoneNumber, this.urlTwoAddress, this.keywordTwoName, buttonSelected(toogleGroup2)));
+            shops.add(new ShopToSearch(this.phoneNumber, this.urlTwoAddress, this.keywordTwoName, this.exist2));
         }
 
         if (!this.urlThreeAddress.isEmpty() && !this.keywordThreename.isEmpty()) {
-            shops.add(new ShopToSearch(this.phoneNumber, this.urlThreeAddress, this.keywordThreename, buttonSelected(toogleGroup3)));
+            shops.add(new ShopToSearch(this.phoneNumber, this.urlThreeAddress, this.keywordThreename, this.exist3));
         }
     }
 
@@ -200,6 +200,9 @@ public class ViewGui extends Application {
         this.keyword3.clear();
         this.phone.clear();
         this.phone.setDisable(false);
+        this.toogleGroup1.getSelectedToggle().setSelected(false);
+        this.toogleGroup2.getSelectedToggle().setSelected(false);
+        this.toogleGroup3.getSelectedToggle().setSelected(false);
     }
 
     //make methods to retrieve string for phone number, url address, keywords
@@ -225,15 +228,15 @@ public class ViewGui extends Application {
         });
     }
 
-    public boolean buttonSelected(ToggleGroup toggleGroup) {
-       RadioButton radioButton1 = (RadioButton) toggleGroup.getSelectedToggle();
-       if (radioButton1.getText().equals("exist")) {
-           setExist(true);
-       } else {
-           setExist(false);
-       }
-       return this.isExist;
-    }
+//    public boolean buttonSelected(ToggleGroup toggleGroup) {
+//       RadioButton radioButton1 = (RadioButton) toggleGroup.getSelectedToggle();
+//       if (radioButton1.getText().equals("exist")) {
+//           setExist(true);
+//       } else {
+//           setExist(false);
+//       }
+//       return this.isExist;
+//    }
 
 
     private GridPane theLayout() {
