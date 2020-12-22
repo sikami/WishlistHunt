@@ -9,6 +9,7 @@ Image of the UI v1.0 is like this:</p>
 <h3>Future adds on</h3>
 <ul>
 <li>Adding time scale to scrape, eq. 1 week, 1 month, etc.</li>
+<li>Adding alert when radio button is not selected whils the accompanying fields are filled</li>
 <li>Adding automatic shutdown when time scale is reached</li>
 </ul>
 <br>
