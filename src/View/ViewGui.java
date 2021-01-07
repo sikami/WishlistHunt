@@ -1,15 +1,6 @@
 package View;
 
-<<<<<<< HEAD:src/View/ViewGui.java
-import DataScraper.DataScraper;
-=======
-import Data.DataScraper;
->>>>>>> main:src/View/ViewGui.java
-import Main.ShopToSearch;
-import com.sun.javafx.font.CharToGlyphMapper;
 import javafx.application.Application;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
@@ -21,7 +12,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -150,10 +140,7 @@ public class ViewGui extends Application {
     }
 
     private void getData() {
-<<<<<<< HEAD:src/View/ViewGui.java
         shops.clear();
-=======
->>>>>>> main:src/View/ViewGui.java
 
         this.phoneNumber = this.phone.getText();
         this.urlOneAddress = this.url1.getText();

@@ -1,7 +1,5 @@
 package Main;
-
-import DataScraper.DataScraper;
-import View.ViewGui;
+import View.*;
 
 import static javafx.application.Application.launch;
 

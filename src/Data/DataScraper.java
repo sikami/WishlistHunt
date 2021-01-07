@@ -1,6 +1,6 @@
 package Data;
 
-import Main.ShopToSearch;
+import View.ShopToSearch;
 import View.ViewGui;
 
 import java.util.List;

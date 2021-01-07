@@ -1,7 +1,6 @@
 package DataScraper;
 
-import Main.ShopToSearch;
-import View.ViewGui;
+import View.ShopToSearch;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;

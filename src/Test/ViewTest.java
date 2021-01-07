@@ -1,5 +1,4 @@
-package View;
-
+package Test;
 
 import org.junit.Test;
 
