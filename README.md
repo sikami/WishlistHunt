@@ -4,7 +4,8 @@
 This is useful when user wants to look for a new product that is planned to come online to be sold but not yet online.
 <br>
 Image of the UI v1.0 is like this:</p>
-![WishList](https://raw.githubusercontent.com/sikami/WishlistHunt/main/wishlist.png)
+
+![WishList](/wishlist.png)
 <br>
 <h3>Future adds on</h3>
 <ul>
