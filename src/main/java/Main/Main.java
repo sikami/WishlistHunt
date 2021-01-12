@@ -8,5 +8,4 @@ public class Main {
         launch(ViewGui.class);
     }
 
-
 }
