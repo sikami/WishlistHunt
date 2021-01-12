@@ -14,9 +14,10 @@ import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 public class ViewGui extends Application {
-
+    Logger LOGGER = Logger.getLogger(ViewGui.class.getName());
     private GridPane gridPane;
     private TextField phone;
     private TextField url1;
@@ -128,15 +129,21 @@ public class ViewGui extends Application {
 
 
     private boolean getExistTrueFalse(ToggleGroup toggleGroup) {
-        RadioButton selected = (RadioButton) toggleGroup.getSelectedToggle();
-        String value = selected.getText();
 
-        if (value.equals("exist")) {
-            return true;
+        try {
+            RadioButton selected = (RadioButton) toggleGroup.getSelectedToggle();
+            if(selected.isSelected()) {
+                String value = selected.getText();
+                if (value.equals("exist")) {
+                    return true;
+                }
+                return false;
+            }
+        } catch (NullPointerException e) {
+            LOGGER.info("Radio Button is not selected");
         }
-        else {
-            return false;
-        }
+
+        return false;
     }
 
     private void getData() {
@@ -196,9 +203,14 @@ public class ViewGui extends Application {
         this.keyword3.clear();
         this.phone.clear();
         this.phone.setDisable(false);
-        this.toogleGroup1.getSelectedToggle().setSelected(false);
-        this.toogleGroup2.getSelectedToggle().setSelected(false);
-        this.toogleGroup3.getSelectedToggle().setSelected(false);
+        try {
+            this.toogleGroup1.getSelectedToggle().setSelected(false);
+            this.toogleGroup2.getSelectedToggle().setSelected(false);
+            this.toogleGroup3.getSelectedToggle().setSelected(false);
+        } catch (NullPointerException e) {
+            LOGGER.info("One or more toggle groups are not selected.");
+        }
+
     }
 
     //make methods to retrieve string for phone number, url address, keywords
