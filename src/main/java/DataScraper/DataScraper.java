@@ -6,19 +6,21 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
-import java.util.List;
 
+/**
+ * DataScraper class. A handler to scrape website.
+ * @author listya
+ */
 public class DataScraper {
-    private List<ShopToSearch> shops;
+    private ShopToSearch shop;
 
-    public DataScraper(List<ShopToSearch> shop) {
-        this.shops = shop;
+    public DataScraper(ShopToSearch shopToSearch) {
+        this.shop = shopToSearch;
     }
 
-
-    private Document visitWebsiteOne() {
+    private Document visitWebsite(ShopToSearch shopToSearch) {
         try {
-            Connection connection = Jsoup.connect(shops.get(0).getUrlAddress());
+            Connection connection = Jsoup.connect(shopToSearch.getUrlAddress());
             connection.userAgent("Mozilla");
             connection.referrer("http://google.com");
             Document doc = connection.get();
@@ -29,16 +31,22 @@ public class DataScraper {
         return null;
     }
 
-    public boolean scrapeKeyword(String keyword) {
-        Document document = visitWebsiteOne();
-        Elements elements  = document.getAllElements();
-        //Elements elements = document.body().select("*");
-        for (Element element : elements) {
-            if (element.ownText().toLowerCase().contains(keyword.toLowerCase())) {
-                System.out.println(element.ownText());
-                return true;
+    public boolean scrapeKeyword() {
+
+        Document document = visitWebsite(this.shop);
+        try {
+            Elements elements  = document.getAllElements();
+            //Elements elements = document.body().select("*");
+            for (Element element : elements) {
+                if (element.ownText().toLowerCase().contains(this.shop.getKeyWord().toLowerCase())) {
+                    System.out.println(element.ownText());
+                    return true;
+                }
             }
+        } catch (NullPointerException e) {
+            e.getMessage();
         }
+
         return false;
     }
 }
