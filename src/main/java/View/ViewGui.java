@@ -1,5 +1,6 @@
 package View;
 
+import DataScraper.DataScraper;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
@@ -207,6 +208,9 @@ public class ViewGui extends Application {
             this.toogleGroup1.getSelectedToggle().setSelected(false);
             this.toogleGroup2.getSelectedToggle().setSelected(false);
             this.toogleGroup3.getSelectedToggle().setSelected(false);
+            this.exist1 = false;
+            this.exist2 = false;
+            this.exist3 = false;
         } catch (NullPointerException e) {
             LOGGER.info("One or more toggle groups are not selected.");
         }
@@ -222,7 +226,11 @@ public class ViewGui extends Application {
             try {
                 getData();
                 fieldsStatOnRun();
-//                DataScraper dataScraper = new DataScraper(shops);
+                DataScraper dataScraper = new DataScraper(shops);
+                // on DataScraper class, fixing DataScraper class so it can scrape only 1 shoptosearch instead of of list
+//                if (shops.size() == 1) {
+//                    if (dataScraper.scrapeKeyword())
+//                }
                 System.out.println(shops);
                 //To be continue
             } catch (Exception e) {
